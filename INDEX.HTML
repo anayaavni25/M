@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Are So Pretty Mayesha 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #ffd1dc;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .heart-bg {
+            position: absolute;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            top: 0; left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.4);
+            animation: floatUp 6s linear infinite;
+            font-size: 20px;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* 1st Page: Click on me Mayesha Screen */
+        #welcomeOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 209, 220, 0.96);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: opacity 0.6s ease;
+        }
+        .envelope-box {
+            background: #ffffff;
+            padding: 45px 30px;
+            border-radius: 35px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            border: 3px solid #ffb6c1;
+            max-width: 380px;
+            width: 90%;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .envelope-icon {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+        .click-me-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 40px;
+            color: #d81b60;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+        .click-me-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+            transition: transform 0.2s, background 0.2s;
+            margin-top: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .click-me-btn:hover {
+            transform: scale(1.08);
+            background: linear-gradient(135deg, #ff1493, #c71585);
+        }
+
+        /* 2nd Page: Main Card Container (Hidden initially) */
+        .card-container {
+            position: relative;
+            z-index: 5;
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.25);
+            padding: 25px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            border: 3px solid #ffb6c1;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .top-controls {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            max-width: 450px;
+            display: none;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        .control-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+        .control-btn:hover { transform: scale(1.1); }
+
+        .header-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 34px;
+            color: #d81b60;
+            margin-bottom: 5px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.5);
+            line-height: 1.1;
+        }
+        .header-quote {
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .moment-card {
+            background: #fff5f7;
+            border: 2px dashed #ffb6c1;
+            border-radius: 20px;
+            width: 100%;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .moment-img-box {
+            width: 100%;
+            height: 230px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .moment-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .moment-caption {
+            margin-top: 10px;
+            font-family: 'Sacramento', cursive;
+            font-size: 30px;
+            color: #c71585;
+            text-align: center;
+        }
+        .counter-text {
+            font-size: 12px;
+            color: #999;
+            margin: 5px 0 15px 0;
+            font-weight: 500;
+        }
+        .action-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+            transition: transform 0.2s, background 0.2s;
+        }
+        .action-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #ff1493, #c71585);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart-bg" id="heartBg"></div>
+
+    <!-- 1st Page: Click on me Mayesha Screen -->
+    <div id="welcomeOverlay">
+        <div class="envelope-box">
+            <div class="envelope-icon">💌</div>
+            <div class="click-me-title">Click on me Mayesha</div>
+            <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Someone special sent you a sweet surprise...</p>
+            <button class="click-me-btn" onclick="openSurprise()">Open 💖</button>
+        </div>
+    </div>
+
+    <!-- Top Music & Sound Controls (Hidden initially) -->
+    <div class="top-controls" id="topControls">
+        <button class="control-btn" id="soundBtn" onclick="toggleAudio()" title="Play Music">🔊</button>
+        <button class="control-btn" onclick="triggerHearts()" title="Send Hearts">💖</button>
+    </div>
+
+    <!-- 2nd Page: Main Card Container -->
+    <div class="card-container" id="mainCard">
+        <div class="header-title">YOU ARE SO PRETTY MAYESHA 💕</div>
+        <div class="header-quote">"Every moment with you is pure magic..."</div>
+
+        <div class="moment-card">
+            <div class="moment-img-box">
+                <img id="img1" src="" alt="Moment 1">
+            </div>
+            <div class="moment-caption" id="cap1">Dancing with you</div>
+        </div>
+
+        <div class="moment-card">
+            <div class="moment-img-box">
+                <img id="img2" src="" alt="Moment 2">
+            </div>
+            <div class="moment-caption" id="cap2">Fighting with you</div>
+        </div>
+
+        <div class="counter-text" id="pageCounter">Moments 1 & 2 of 4 💕</div>
+
+        <button class="action-btn" onclick="nextMoments()">Show me more 💖</button>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-473.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Your newly uploaded files mapped with exact names & requested captions
+        const momentsData = [
+            {
+                file: "download (1).jpg",
+                caption: "Dancing with you"
+            },
+            {
+                file: "download (2).jpg",
+                caption: "Fighting with you"
+            },
+            {
+                file: "Sending virtual hugs to all your ride-or-dies 💖 Happy Friendship Day!.jpg",
+                caption: "Laughing with you"
+            },
+            {
+                file: "TikTok · Vergil919.jpg",
+                caption: "Gossiping with you"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function updateMoments() {
+            let item1 = momentsData[currentIndex % momentsData.length];
+            let item2 = momentsData[(currentIndex + 1) % momentsData.length];
+
+            let imgEl1 = document.getElementById('img1');
+            let imgEl2 = document.getElementById('img2');
+
+            imgEl1.src = encodeURI(item1.file);
+            document.getElementById('cap1').innerText = item1.caption;
+
+            imgEl2.src = encodeURI(item2.file);
+            document.getElementById('cap2').innerText = item2.caption;
+
+            document.getElementById('pageCounter').innerText = `Moments ${currentIndex + 1} & ${(currentIndex + 1) % 4 + 1} of 4 💕`;
+        }
+
+        function openSurprise() {
+            const overlay = document.getElementById('welcomeOverlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                document.getElementById('mainCard').style.display = 'flex';
+                document.getElementById('topControls').style.display = 'flex';
+                updateMoments();
+                triggerHearts();
+                // Play romantic music automatically upon opening
+                const music = document.getElementById('bgMusic');
+                music.play().catch(() => {});
+                document.getElementById('soundBtn').innerHTML = '🎵';
+                isPlaying = true;
+            }, 600);
+        }
+
+        function nextMoments() {
+            currentIndex = (currentIndex + 2) % momentsData.length;
+            updateMoments();
+            triggerHearts();
+        }
+
+        // Background Floating Hearts
+        const heartBg = document.getElementById('heartBg');
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.classList.add('floating-heart');
+            h.innerHTML = ['💖', '💕', '✨', '💗', '🧸'][Math.floor(Math.random() * 5)];
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heartBg.appendChild(h);
+            setTimeout(() => h.remove(), 6000);
+        }, 500);
+
+        function triggerHearts() {
+            for(let i=0; i<10; i++) {
+                const h = document.createElement('div');
+                h.classList.add('floating-heart');
+                h.innerHTML = '💖';
+                h.style.left = (50 + (Math.random() * 40 - 20)) + 'vw';
+                h.style.top = '50vh';
+                h.style.animationDuration = '2s';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 2000);
+            }
+        }
+
+        let isPlaying = false;
+        function toggleAudio() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('soundBtn');
+            if(isPlaying) {
+                music.pause();
+                btn.innerHTML = '🔊';
+                isPlaying = false;
+            } else {
+                music.play().catch(() => {});
+                btn.innerHTML = '🎵';
+                isPlaying = true;
+            }
+        }
+    </script>
+</body>
+</html>
